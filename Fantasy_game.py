@@ -1452,7 +1452,7 @@ dexterity_bonus = calculate_bonus(dexterity)
 
 # Character definitions
 characters = {
-    "Thorgar": {"class": "Dwarf Fighter", "life": 15, "attack": (5, 9)},
+    "Thorgar": {"class": "Dwarf Fighter", "life": 15, "attack": (5, 10)},
     "Mila": {"class": "Hobbit Bard Healer", "life": 12},
     "Arthros": {"class": "Elf Rogue", "life": 12},
     "Aretra": {"class": "Human Bard", "life": 12},
@@ -1594,7 +1594,7 @@ while dragon_life > 0 and life_total > 0:
             print("\nBaldric casts a fireball, dealing 10 damage!")
             dragon_life -= 10
         elif ally == "Baldric" and roll < 10:
-            damage = random.randint(1, 5)
+            damage = random.randint(2, 6)
             print(f"\nBaldric's fireball backfires! The party takes {damage} damage and the dragon 10 damage.")
             life_total -= damage
             for member in party:
@@ -1605,6 +1605,10 @@ while dragon_life > 0 and life_total > 0:
     if life_total <= 0:
         print("Thou have been killed by Baldric's fireball...")
         break
+
+    # Remove party dead members
+    print("------------------------------------------------------------------------------------------------------------------------")
+    party = check_for_deaths(party)
 
     # Victory
     if dragon_life <= 0:
